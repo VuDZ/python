@@ -8,20 +8,20 @@ with open('d:\work\stat\SoftwareInfo.csv', encoding="utf-8-sig") as csvSource:
                 path = row[0]
                 descr = row[1]
                 dirIdx = path.rfind('\\')
-                dir = path[0:dirIdx]
+                directory = path[0:dirIdx]
                 filename = path[dirIdx + 1:]
-                if dir in pathes:
-                    descrs = pathes[dir]
+                if directory in pathes:
+                    descrs = pathes[directory]
                     if descr not in descrs:
                         descrs[descr] = filename
                 else:
-                    pathes[dir] = dict()
-                    pathes[dir][descr] = filename
+                    pathes[directory] = dict()
+                    pathes[directory][descr] = filename
 
-        for dir, list in pathes.items():
-            if len(list) > 1:
-                print(dir + '\\')
-                for d, f in list.items():
-                    print('\t' + f + '\t->\t' + d)
+        for directory, descrMap in pathes.items():
+            if len(descrMap) > 1:
+                print(directory + '\\')
+                for descr, file in descrMap.items():
+                    print('\t' + file + '\t->\t' + descr)
 
 print('done')
